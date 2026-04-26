@@ -34,6 +34,12 @@ public class ProdutosServices {
         return "Produto atualizado com sucesso!";
     }
 
+    public void deletarProdutos(Integer id) {
+        // Aqui usamos o repositório que já está injetado no seu Service
+        // para apagar o registro no banco de dados.
+        repository.deleteById(id); 
+    }
+
     public void excluirProdutos(Integer id) {
         // Verifica se o ID realmente existe no banco antes de deletar
         if (repository.existsById(id)) {

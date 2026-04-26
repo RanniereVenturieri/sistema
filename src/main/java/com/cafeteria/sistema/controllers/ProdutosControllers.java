@@ -6,12 +6,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,5 +53,35 @@ public class ProdutosControllers {
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Erro ao salvar imagem");
         }
+    }
+
+    // --- ATUALIZAR PRODUTO (PUT) ---
+    @PutMapping("/{id}")
+    public ResponseEntity<Produtos> atualizarProduto(@PathVariable Integer id, @RequestBody Produtos produtoAtualizado) {
+        Produtos produtoExistente = service.procurarId(id);
+        if (produtoExistente == null) {
+            return ResponseEntity.notFound().build(); // Retorna 404 se não achar o ID
+        }
+
+        // Atualizando os dados na memória (Ajuste caso seus Getters/Setters tenham nomes diferentes)
+        produtoExistente.setNome(produtoAtualizado.getNome());
+        produtoExistente.setPreco(produtoAtualizado.getPreco());
+        produtoExistente.setDescricao(produtoAtualizado.getDescricao());
+
+        // Mandando o service salvar no banco
+        service.atualizarProdutos(id, produtoExistente);
+        return ResponseEntity.ok(produtoExistente);
+    }
+
+    // --- DELETAR PRODUTO (DELETE) ---
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarProduto(@PathVariable Integer id) {
+        Produtos produtoExistente = service.procurarId(id);
+        if (produtoExistente == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        service.deletarProdutos(id);
+        return ResponseEntity.noContent().build(); // Retorna 204 (Excluído com sucesso)
     }
 }
