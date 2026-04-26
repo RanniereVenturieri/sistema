@@ -41,7 +41,6 @@ public class Pedido {
 
     public Pedido() {}
 
-    // Getters e Setters de todos os campos (id, cliente, dataHora, status, itens, comprovanteUrl)
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
     public String getCliente() { return cliente; }

@@ -14,19 +14,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // 1. Desativa CSRF para que o Thunder Client consiga fazer POST/DELETE sem erro
+          
             .csrf(csrf -> csrf.disable())
 
-            // 2. Regras de Autorização
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/h2-console/**").permitAll() // Libera o banco H2 para você trabalhar
-                .anyRequest().authenticated() // TRANCA TUDO: Qualquer outra rota exige login
+                .requestMatchers("/h2-console/**").permitAll() 
+                .anyRequest().authenticated() 
             )
 
-            // 3. Necessário para o console do H2 abrir dentro de um frame no navegador
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
 
-            // 4. Habilita o formulário de login (Navegador) e o Basic Auth (Thunder Client)
             .formLogin(Customizer.withDefaults()) 
             .httpBasic(Customizer.withDefaults());
 

@@ -35,18 +35,16 @@ public class ProdutosServices {
     }
 
     public void deletarProdutos(Integer id) {
-        // Aqui usamos o repositório que já está injetado no seu Service
-        // para apagar o registro no banco de dados.
+      
         repository.deleteById(id); 
     }
 
     public void excluirProdutos(Integer id) {
-        // Verifica se o ID realmente existe no banco antes de deletar
+        
         if (repository.existsById(id)) {
             repository.deleteById(id);
         } else {
-            // Em vez de estourar erro 500, você pode apenas não fazer nada
-            // ou lançar uma mensagem personalizada
+          
             System.out.println("Tentativa de excluir ID inexistente: " + id);
         }
     }

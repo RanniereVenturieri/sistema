@@ -54,26 +54,22 @@ public class ProdutosControllers {
             return ResponseEntity.status(500).body("Erro ao salvar imagem");
         }
     }
-
-    // --- ATUALIZAR PRODUTO (PUT) ---
+    
     @PutMapping("/{id}")
     public ResponseEntity<Produtos> atualizarProduto(@PathVariable Integer id, @RequestBody Produtos produtoAtualizado) {
         Produtos produtoExistente = service.procurarId(id);
         if (produtoExistente == null) {
-            return ResponseEntity.notFound().build(); // Retorna 404 se não achar o ID
+            return ResponseEntity.notFound().build(); 
         }
 
-        // Atualizando os dados na memória (Ajuste caso seus Getters/Setters tenham nomes diferentes)
         produtoExistente.setNome(produtoAtualizado.getNome());
         produtoExistente.setPreco(produtoAtualizado.getPreco());
         produtoExistente.setDescricao(produtoAtualizado.getDescricao());
 
-        // Mandando o service salvar no banco
         service.atualizarProdutos(id, produtoExistente);
         return ResponseEntity.ok(produtoExistente);
     }
 
-    // --- DELETAR PRODUTO (DELETE) ---
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarProduto(@PathVariable Integer id) {
         Produtos produtoExistente = service.procurarId(id);
@@ -82,6 +78,6 @@ public class ProdutosControllers {
         }
         
         service.deletarProdutos(id);
-        return ResponseEntity.noContent().build(); // Retorna 204 (Excluído com sucesso)
+        return ResponseEntity.noContent().build(); 
     }
 }

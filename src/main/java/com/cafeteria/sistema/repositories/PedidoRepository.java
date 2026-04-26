@@ -6,5 +6,5 @@ import com.cafeteria.sistema.entidades.Pedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
-    // Aqui o Spring Data JPA faz a mágica sozinho!
+    
 }
