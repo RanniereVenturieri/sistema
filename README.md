@@ -1,6 +1,16 @@
 Cafeteria System API
 Sistema desenvolvido para gerenciamento de uma cafeteria, permitindo o controle de estoque de produtos e processamento de pedidos com upload de comprovantes.
 
+🗄️ Modelagem do Banco de Dados
+
+Para garantir a integridade dos pedidos e dos produtos, a arquitetura do banco de dados foi desenhada seguindo as regras de negócio da cafeteria.
+
+Modelo Conceitual
+![Modelo Conceitual da Cafeteria](assets/modelo-conceitual.png)
+
+Modelo Lógico
+![Modelo Lógico da Cafeteria](assets/modelo-logico.png)
+
 🚀 Funcionalidades
 Produtos: Cadastro completo com imagem (armazenada localmente).
 Pedidos: Registro de vendas com múltiplos itens e cálculo automático.
@@ -28,6 +38,6 @@ src/main/java/com/cafeteria/sistema/
 └── config/ → Security
 
 🔐 Configuração de Acesso
-O sistema está protegido. Utilize as credenciais abaixo no Thunder Client (Auth -> Basic):
+O sistema está protegido. Utilize as credenciais abaixo no Thunder Client ou no Postman (Auth -> Basic):
 User: cafeteria
 Password: cafe
