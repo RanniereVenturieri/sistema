@@ -1,7 +1,3 @@
-Cafeteria System API
-Sistema desenvolvido para gerenciamento de uma cafeteria, permitindo o controle de estoque de produtos e processamento de pedidos com upload de comprovantes.
----
-
 # ☕ Cafeteria System API
 
 Sistema desenvolvido para gerenciamento de uma cafeteria, permitindo o controle de estoque de produtos e processamento de pedidos.
