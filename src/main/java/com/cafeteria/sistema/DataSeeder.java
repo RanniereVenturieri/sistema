@@ -11,7 +11,6 @@ import com.cafeteria.sistema.repositories.ProdutosRepositories;
 @Component
 public class DataSeeder implements CommandLineRunner {
 
-    // 2. Coloquei o "s" no ProdutosRepositories para bater com o import lá de cima
     private final ProdutosRepositories produtoRepository;
 
     public DataSeeder(ProdutosRepositories produtoRepository) {
@@ -19,7 +18,7 @@ public class DataSeeder implements CommandLineRunner {
     }
  @Override
     public void run(String... args) throws Exception {
-        // Verifica se o banco está vazio
+
         if (produtoRepository.count() == 0) {
             System.out.println("🌱 Banco vazio! Semeando o cardápio oficial...");
 
@@ -46,7 +45,7 @@ public class DataSeeder implements CommandLineRunner {
 
             Produtos p5 = new Produtos();
             p5.setNome("Pão com ovo");
-            p5.setDescricao("Ovinho no ponto e pão fres"); // Coloquei igualzinho estava no print
+            p5.setDescricao("Ovinho no ponto e pão fres"); 
             p5.setPreco(3.5);
 
             Produtos p6 = new Produtos();
@@ -54,7 +53,6 @@ public class DataSeeder implements CommandLineRunner {
             p6.setDescricao("Natural da fruta");
             p6.setPreco(5.0);
 
-            // Salva todos os produtos de uma só vez no banco de dados!
             produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
 
             System.out.println("✅ Cardápio cadastrado com sucesso!");
