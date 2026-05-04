@@ -18,7 +18,8 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/h2-console/**").permitAll() 
+                .requestMatchers("/h2-console/**").permitAll()
+                
                 .anyRequest().authenticated() 
             )
 
@@ -29,4 +30,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+    
 }
